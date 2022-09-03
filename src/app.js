@@ -1,6 +1,6 @@
 const express = require("express");
 const cors = require("cors");
-// const dotenv = require("dotenv");
+const dotenv = require("dotenv");
 
 const app = express();
 const {
@@ -38,8 +38,9 @@ const {
   updateToolById,
   deleteToolById,
 } = require("./controllers/tools.controller");
+const db = require("./models");
 
-// dotenv.config();
+dotenv.config();
 app.use(cors());
 
 app.use(express.json());
@@ -55,6 +56,16 @@ app.get("/version", (req, res) => {
     version: "V1.01",
   });
 });
+
+// DB Sync
+
+db.sequelize.sync()
+  .then(() => {
+    console.log("Synced db.");
+  })
+  .catch((err) => {
+    console.log("Failed to sync db: " + err.message);
+  });
 
 // Auth
 app.post("/login", login);
