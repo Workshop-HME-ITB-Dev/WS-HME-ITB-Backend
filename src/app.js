@@ -1,7 +1,7 @@
 const express = require("express");
 const cors = require("cors");
 const dotenv = require("dotenv");
-
+const { uploadHandler, upload } = require("./storage");
 const app = express();
 const {
   findAllAdmins,
@@ -56,6 +56,13 @@ app.get("/version", (req, res) => {
     version: "V1.01",
   });
 });
+
+// Serve Static Image
+app.use('/uploads', express.static('uploads'))
+
+// Upload Image
+app.post('/uploads', upload.single('image'), uploadHandler)
+
 
 // DB Sync
 db.sequelize.sync({ alter: true })
