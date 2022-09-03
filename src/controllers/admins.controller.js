@@ -2,12 +2,25 @@ const db = require("../models");
 const { validateRegisterInput, validateAdminUpdateInput } = require("../utils/input.validator");
 const Admin = db.admins;
 
+const dotenv = require('dotenv');
+dotenv.config();
+
+const bcrypt = require('bcrypt');
+
 const findAllAdmins = async (req, res) => {
   try {
     const admins = await Admin.findAll();
     res.status(200).json({
       status: "success",
-      data: admins,
+      data: admins.map(x => {
+        return {
+          id: x.id,
+          email: x.email,
+          name: x.name,
+          createdAt: x.createdAt,
+          updatedAt: x.updatedAt
+        }
+      }),
       message: "Get All Admins Success",
     });
   } catch (error) {
@@ -32,11 +45,25 @@ const createAdmin = async (req, res) => {
     return;
   }
   try {
+    // find user with the same email
+    const { email, name, password } = req.body;
+    const foundAdmin = await Admin.findOne({ where: { email: email } });
+    console.log(foundAdmin);
+    if (foundAdmin) {
+      res.status(401).json({
+        status: "error",
+        data: null,
+        message: "Email already Exists !",
+      });
+      return;
+    }
+    // save with salted password 
     const admin = req.body;
+    admin.password = bcrypt.hashSync(admin.password, bcrypt.genSaltSync(Number(process.env.SALT)));
     await Admin.create(admin);
     res.status(201).json({
       status: "success",
-      data: admin,
+      data: null,
       message: "Create admin Success",
     });
   } catch (error) {
@@ -55,7 +82,13 @@ const findAdminById = async (req, res) => {
     if (admin) {
       res.status(200).json({
         status: "success",
-        data: admin,
+        data: {
+          id: admin.id,
+          email: admin.email,
+          name: admin.name,
+          createdAt: admin.createdAt,
+          updatedAt: admin.updatedAt
+        },
         message: "Get Admin by id Success",
       });
     }
@@ -98,7 +131,13 @@ const updateAdminById = async (req, res) => {
       })
       res.status(200).json({
         status: "success",
-        data: req.body,
+        data: {
+          id: req.body.id,
+          email: req.body.email,
+          name: req.body.name,
+          createdAt: req.body.createdAt,
+          updatedAt: req.body.updatedAt
+        },
         message: "Update Admin Success",
       });
     }

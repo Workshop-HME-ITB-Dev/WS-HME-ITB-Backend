@@ -16,9 +16,6 @@ module.exports = (sequelize, Sequelize) => {
         password: {
             type: Sequelize.STRING,
             allowNull: false,
-            get() {
-                return undefined
-            }
         }
     });
     return Admin;

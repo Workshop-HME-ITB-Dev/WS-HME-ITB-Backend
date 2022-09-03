@@ -39,30 +39,12 @@ const {
   deleteToolById,
 } = require("./controllers/tools.controller");
 const db = require("./models");
+const auth = require("./middleware/auth");
 
 dotenv.config();
 app.use(cors());
 
 app.use(express.json());
-
-app.get("/", (req, res) => {
-  res.send({
-    message: "Workshop HME ITB!",
-  });
-});
-
-app.get("/version", (req, res) => {
-  res.send({
-    version: "V1.01",
-  });
-});
-
-// Serve Static Image
-app.use('/uploads', express.static('uploads'))
-
-// Upload Image
-app.post('/uploads', upload.single('image'), uploadHandler)
-
 
 // DB Sync
 db.sequelize.sync({ alter: true })
@@ -73,36 +55,55 @@ db.sequelize.sync({ alter: true })
     console.log("Failed to sync db: " + err.message);
   });
 
+
+app.get("/", (req, res) => {
+  res.send({
+    message: "Workshop HME ITB!",
+  });
+});
+
+app.get("/version", (req, res) => {
+  res.send({
+    version: "V1.01"
+  });
+});
+
+// Serve Static Image
+app.use('/uploads', express.static('uploads'))
+
+// Upload Image
+app.post('/uploads', auth, upload.single('image'), uploadHandler)
+
 // Auth
 app.post("/login", login);
 // Admin
-app.get("/admins", findAllAdmins);
+app.get("/admins", auth, findAllAdmins);
 app.post("/admins", createAdmin);
-app.get("/admins/:id", findAdminById);
-app.put("/admins/:id", updateAdminById);
+app.get("/admins/:id", auth, findAdminById);
+app.put("/admins/:id", auth, updateAdminById);
 // Articles
 app.get("/articles", findAllArticles);
-app.post("/articles", createArticle);
-app.get("/articles/:id", findArticleById);
-app.put("/articles/:id", updateArticleById);
-app.delete("/articles/:id", deleteArticleById);
+app.post("/articles", auth, createArticle);
+app.get("/articles/:id", auth, findArticleById);
+app.put("/articles/:id", auth, updateArticleById);
+app.delete("/articles/:id", auth, deleteArticleById);
 // Shops
 app.get("/shops", findAllShops);
-app.post("/shops", createShop);
-app.get("/shops/:id", findShopById);
-app.put("/shops/:id", updateShopById);
-app.delete("/shops/:id", deleteShopById);
+app.post("/shops", auth, createShop);
+app.get("/shops/:id", auth, findShopById);
+app.put("/shops/:id", auth, updateShopById);
+app.delete("/shops/:id", auth, deleteShopById);
 // Tools
 app.get("/tools", findAllTools);
-app.post("/tools", createTool);
-app.get("/tools/:id", findToolById);
-app.put("/tools/:id", updateToolById);
-app.delete("/tools/:id", deleteToolById);
+app.post("/tools", auth, createTool);
+app.get("/tools/:id", auth, findToolById);
+app.put("/tools/:id", auth, updateToolById);
+app.delete("/tools/:id", auth, deleteToolById);
 // Rents
 app.get("/rents", findAllRents);
-app.post("/rents", createRent);
-app.get("/rents/:id", findRentById);
-app.put("/rents/:id", updateRentById);
-app.delete("/rents/:id", deleteRentById);
+app.post("/rents", auth, createRent);
+app.get("/rents/:id", auth, findRentById);
+app.put("/rents/:id", auth, updateRentById);
+app.delete("/rents/:id", auth, deleteRentById);
 
 module.exports = app;
