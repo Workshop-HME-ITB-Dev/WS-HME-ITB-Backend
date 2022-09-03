@@ -1,4 +1,17 @@
+const { validateLoginInput } = require('../utils/input.validator');
+
 const login = async (req, res) => {
+  try {
+    validateLoginInput(req.body);
+  }
+  catch (error) {
+    res.status(400).json({
+      status: "error",
+      data: error.message,
+      message: "Invalid Input",
+    });
+    return;
+  }
   try {
     res.status(200).json({
       status: "success",

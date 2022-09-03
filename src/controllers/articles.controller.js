@@ -1,4 +1,5 @@
 const db = require('../models');
+const { validateCreateArticleInput, validateUpdateArticleInput } = require('../utils/input.validator');
 const Article = db.articles;
 
 const findAllArticles = async (req, res) => {
@@ -19,6 +20,17 @@ const findAllArticles = async (req, res) => {
 };
 
 const createArticle = async (req, res) => {
+  try {
+    validateCreateArticleInput(req.body);
+  }
+  catch (error) {
+    res.status(400).json({
+      status: "error",
+      data: error.message,
+      message: "Invalid Input",
+    });
+    return;
+  }
   try {
     const article = req.body;
     await Article.create(article);
@@ -64,6 +76,17 @@ const findArticleById = async (req, res) => {
 };
 
 const updateArticleById = async (req, res) => {
+  try {
+    validateUpdateArticleInput(req.body);
+  }
+  catch (error) {
+    res.status(400).json({
+      status: "error",
+      data: error.message,
+      message: "Invalid Input",
+    });
+    return;
+  }
   try {
     const id = req.params.id;
     const article = await Article.findByPk(id);

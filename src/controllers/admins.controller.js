@@ -1,4 +1,5 @@
 const db = require("../models");
+const { validateRegisterInput, validateAdminUpdateInput } = require("../utils/input.validator");
 const Admin = db.admins;
 
 const findAllAdmins = async (req, res) => {
@@ -19,6 +20,17 @@ const findAllAdmins = async (req, res) => {
 };
 
 const createAdmin = async (req, res) => {
+  try {
+    validateRegisterInput(req.body);
+  }
+  catch (error) {
+    res.status(400).json({
+      status: "error",
+      data: error.message,
+      message: "Invalid Input",
+    });
+    return;
+  }
   try {
     const admin = req.body;
     await Admin.create(admin);
@@ -66,6 +78,17 @@ const findAdminById = async (req, res) => {
 };
 
 const updateAdminById = async (req, res) => {
+  try {
+    validateAdminUpdateInput(req.body);
+  }
+  catch (error) {
+    res.status(400).json({
+      status: "error",
+      data: error.message,
+      message: "Invalid Input",
+    });
+    return;
+  }
   try {
     const id = req.params.id;
     const admin = await Admin.findByPk(id);

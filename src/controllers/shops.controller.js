@@ -1,4 +1,5 @@
 const db = require('../models');
+const { validateCreateShopInput, validateUpdateShopInput } = require('../utils/input.validator');
 const Shop = db.shops;
 
 const findAllShops = async (req, res) => {
@@ -19,6 +20,17 @@ const findAllShops = async (req, res) => {
 };
 
 const createShop = async (req, res) => {
+  try {
+    validateCreateShopInput(req.body);
+  }
+  catch (error) {
+    res.status(400).json({
+      status: "error",
+      data: error.message,
+      message: "Invalid Input",
+    });
+    return;
+  }
   try {
     const shop = req.body;
     await Shop.create(shop);
@@ -64,6 +76,17 @@ const findShopById = async (req, res) => {
 };
 
 const updateShopById = async (req, res) => {
+  try {
+    validateUpdateShopInput(req.body);
+  }
+  catch (error) {
+    res.status(400).json({
+      status: "error",
+      data: error.message,
+      message: "Invalid Input",
+    });
+    return;
+  }
   try {
     const id = req.params.id;
     const shop = await Shop.findByPk(id);

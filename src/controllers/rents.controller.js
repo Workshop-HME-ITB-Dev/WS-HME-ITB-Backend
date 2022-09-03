@@ -1,4 +1,5 @@
 const db = require('../models');
+const { validateCreateRentInput, validateUpdateRentInput } = require('../utils/input.validator');
 const Rent = db.rents;
 
 const findAllRents = async (req, res) => {
@@ -19,6 +20,17 @@ const findAllRents = async (req, res) => {
 };
 
 const createRent = async (req, res) => {
+  try {
+    validateCreateRentInput(req.body);
+  }
+  catch (error) {
+    res.status(400).json({
+      status: "error",
+      data: error.message,
+      message: "Invalid Input",
+    });
+    return;
+  }
   try {
     const rent = req.body;
     await Rent.create(rent);
@@ -64,6 +76,17 @@ const findRentById = async (req, res) => {
 };
 
 const updateRentById = async (req, res) => {
+  try {
+    validateUpdateRentInput(req.body);
+  }
+  catch (error) {
+    res.status(400).json({
+      status: "error",
+      data: error.message,
+      message: "Invalid Input",
+    });
+    return;
+  }
   try {
     const id = req.params.id;
     const rent = await Rent.findByPk(id);

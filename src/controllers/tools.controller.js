@@ -1,4 +1,5 @@
 const db = require('../models');
+const { validateCreateToolInput, validateUpdateToolInput } = require('../utils/input.validator');
 const Tool = db.tools;
 
 const findAllTools = async (req, res) => {
@@ -19,6 +20,17 @@ const findAllTools = async (req, res) => {
 };
 
 const createTool = async (req, res) => {
+  try {
+    validateCreateToolInput(req.body);
+  }
+  catch (error) {
+    res.status(400).json({
+      status: "error",
+      data: error.message,
+      message: "Invalid Input",
+    });
+    return;
+  }
   try {
     const tool = req.body;
     await Tool.create(tool);
@@ -64,6 +76,17 @@ const findToolById = async (req, res) => {
 };
 
 const updateToolById = async (req, res) => {
+  try {
+    validateUpdateToolInput(req.body);
+  }
+  catch (error) {
+    res.status(400).json({
+      status: "error",
+      data: error.message,
+      message: "Invalid Input",
+    });
+    return;
+  }
   try {
     const id = req.params.id;
     const tool = await Tool.findByPk(id);
