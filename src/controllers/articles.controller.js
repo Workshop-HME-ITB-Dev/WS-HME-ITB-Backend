@@ -107,6 +107,13 @@ const deleteArticleById = async (req, res) => {
         message: "Delete Article Success",
       });
     }
+    else {
+      res.status(404).json({
+        status: "failed",
+        data: null,
+        message: "Article not found !",
+      });
+    }
   } catch (error) {
     res.status(500).json({
       status: "error",
