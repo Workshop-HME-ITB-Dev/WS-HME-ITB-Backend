@@ -3,10 +3,10 @@ const Admin = db.admins;
 
 const findAllAdmins = async (req, res) => {
   try {
-    const admin = await Admin.findAll();
+    const admins = await Admin.findAll();
     res.status(200).json({
       status: "success",
-      data: admin,
+      data: admins,
       message: "Get All Admins Success",
     });
   } catch (error) {
@@ -24,7 +24,7 @@ const createAdmin = async (req, res) => {
     await Admin.create(admin);
     res.status(201).json({
       status: "success",
-      data: req.body,
+      data: admin,
       message: "Create admin Success",
     });
   } catch (error) {
@@ -75,7 +75,7 @@ const updateAdminById = async (req, res) => {
       })
       res.status(200).json({
         status: "success",
-        data: admin,
+        data: req.body,
         message: "Update Admin Success",
       });
     }
