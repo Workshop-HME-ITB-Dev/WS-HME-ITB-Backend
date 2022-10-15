@@ -76,7 +76,7 @@ const validateCreateToolInput = ({
         throw new Error('Name maximum length is 25');
     }
     // image is valid url
-    if (!validator.isURL(image)) {
+    if (!validator.isURL(image, { require_tld: false })) {
         throw new Error('image path not valid');
     }
     // totalStock is integer
@@ -135,8 +135,8 @@ const validateCreateRentInput = ({
         validator.isEmpty(rentPhone) ||
         validator.isEmpty(rentLineId) ||
         validator.isEmpty(organisation) ||
-        validator.isEmpty(fromDate.toISOString()) ||
-        validator.isEmpty(expectedReturnDate.toISOString()) ||
+        validator.isEmpty(fromDate) ||
+        validator.isEmpty(expectedReturnDate) ||
         validator.isEmpty(status) ||
         validator.isEmpty(totalPrice.toString())
     ) {
@@ -160,14 +160,14 @@ const validateCreateRentInput = ({
     if (!validator.isMobilePhone(rentPhone)) {
         throw new Error('Phone must be a proper phone number');
     }
-    // fromDate is date
-    if (!(fromDate instanceof Date)) {
-        throw new Error('fromDate must be a proper date');
-    }
-    // expectedReturnDate is date
-    if (!(expectedReturnDate instanceof Date)) {
-        throw new Error('expectedReturnDate must be a proper date');
-    }
+    // // fromDate is date
+    // if (!(fromDate instanceof Date)) {
+    //     throw new Error('fromDate must be a proper date');
+    // }
+    // // expectedReturnDate is date
+    // if (!(expectedReturnDate instanceof Date)) {
+    //     throw new Error('expectedReturnDate must be a proper date');
+    // }
     // status is in listofstatus
     if (!listOfStatus.includes(status)) {
         throw new Error('status is not known');
@@ -306,7 +306,7 @@ const validateCreateArticleInput = ({
         validator.isEmpty(title) ||
         validator.isEmpty(desc) ||
         validator.isEmpty(imageUrl) ||
-        validator.isEmpty(publishedDate.toISOString()) ||
+        validator.isEmpty(publishedDate) ||
         validator.isEmpty(link) ||
         validator.isEmpty(duration.toString())
     ) {
@@ -328,10 +328,10 @@ const validateCreateArticleInput = ({
     if (!validator.isURL(imageUrl)) {
         throw new Error('imageUrl is not a valid url');
     }
-    // publishedDate is date
-    if (!(publishedDate instanceof Date)) {
-        throw new Error('publishedDate must be a proper date');
-    }
+    // // publishedDate is date
+    // if (!(publishedDate instanceof Date)) {
+    //     throw new Error('publishedDate must be a proper date');
+    // }
     // duration is int
     if (!validator.isInt(duration.toString()) || duration < 0) {
         throw new Error('duration must be a positive integer');

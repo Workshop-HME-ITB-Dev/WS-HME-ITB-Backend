@@ -1,6 +1,6 @@
 const db = require('../models');
 const Admin = db.admins;
-const { validateLoginInput } = require('../utils/input.validator');
+const { validateLoginInput, validateRegisterInput } = require('../utils/input.validator');
 const dotenv = require('dotenv');
 dotenv.config();
 
@@ -36,9 +36,10 @@ const login = async (req, res) => {
     }
 
     const token = jwt.sign(
-      { id: admin.id, username: admin.name },
+      { id: admin.id, name: admin.name, email: admin.email },
       String(process.env.SECRET)
     );
+    console.log( { id: admin.id, name: admin.name, email: admin.email });
 
     res.status(200).json({
       status: "success",
