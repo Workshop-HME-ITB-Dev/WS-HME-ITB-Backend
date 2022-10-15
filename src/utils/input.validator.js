@@ -64,7 +64,7 @@ const validateCreateToolInput = ({
         validator.isEmpty(activated.toString()) ||
         validator.isEmpty(totalStock.toString()) ||
         validator.isEmpty(priceHour.toString()) ||
-        validator.isEmpty(priceHour.toString()) 
+        validator.isEmpty(priceHour.toString())
     ) {
         throw new Error('Input must not be empty');
     }
@@ -240,9 +240,9 @@ const validateUpdateRentInput = ({
         throw new Error('returnNim must be a positive integer');
     }
     // returnDate is date
-    if (returnDate && !(returnDate instanceof Date)) {
-        throw new Error('returnDate must be a proper date');
-    }
+    // if (returnDate && !(returnDate instanceof Date)) {
+    //     throw new Error('returnDate must be a proper date');
+    // }
 };
 
 const validateCreateShopInput = ({

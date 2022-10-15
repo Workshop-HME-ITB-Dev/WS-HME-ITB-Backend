@@ -1,0 +1,871 @@
+{
+	"info": {
+		"_postman_id": "2f43b789-95c3-45ed-91f7-492ce1b1b836",
+		"name": "Workshop HME REST",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "11781459"
+	},
+	"item": [
+		{
+			"name": "Root /",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}",
+					"host": [
+						"{{base_url}}"
+					]
+				},
+				"description": "Root API"
+			},
+			"response": []
+		},
+		{
+			"name": "Version /",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/version",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"version"
+					]
+				},
+				"description": "Cek Version"
+			},
+			"response": []
+		},
+		{
+			"name": "Upload /upload",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "image",
+							"type": "file",
+							"src": "/C:/Users/David Fauzi/Downloads/naks3.jpg"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{base_url}}/uploads",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"uploads"
+					]
+				},
+				"description": "Upload Gambar"
+			},
+			"response": []
+		},
+		{
+			"name": "Static File /uploads",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/uploads",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"uploads"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Auth Login /login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\" : \"davidfauzi29@gmail.com\",\r\n    \"password\" : \"Stylish883\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}/login",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"login"
+					]
+				},
+				"description": "Login Admin"
+			},
+			"response": []
+		},
+		{
+			"name": "Auth Register /register",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\" : \"davidfauzi29@gmail.com\",\r\n    \"name\": \"David Fauzi\",\r\n    \"password\" : \"Stylish883\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}/register",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"register"
+					]
+				},
+				"description": "Register akun admin"
+			},
+			"response": []
+		},
+		{
+			"name": "ADMINS",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}",
+					"host": [
+						"{{base_url}}"
+					]
+				},
+				"description": "Fetch all admins"
+			},
+			"response": []
+		},
+		{
+			"name": "Get All Admin /admins",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/admins",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"admins"
+					]
+				},
+				"description": "Fetch all admins"
+			},
+			"response": []
+		},
+		{
+			"name": "Get Admin By Id /admins/:id",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/admins/1",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"admins",
+						"1"
+					]
+				},
+				"description": "Fetch admin by id"
+			},
+			"response": []
+		},
+		{
+			"name": "Create Admin /admins",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\" : \"workshopitb@gmail.com\",\r\n    \"name\": \"Workshop ITB\",\r\n    \"password\" : \"AdminWSITB123\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}/admins",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"admins"
+					]
+				},
+				"description": "Register new admin"
+			},
+			"response": []
+		},
+		{
+			"name": "Update Admin by id /admins/:id",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\" : \"davidfauzi29@gmail.com\",\r\n    \"name\" : \"davidfauzi\",\r\n    \"password\" : \"123\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}/admins/5",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"admins",
+						"5"
+					]
+				},
+				"description": "Update admin data"
+			},
+			"response": []
+		},
+		{
+			"name": "ARTICLES",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}",
+					"host": [
+						"{{base_url}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get All Articles /articles",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/articles",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"articles"
+					]
+				},
+				"description": "Fetch all articles"
+			},
+			"response": []
+		},
+		{
+			"name": "Get Article by id /articles/:id",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/articles/id",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"articles",
+						"id"
+					]
+				},
+				"description": "Fetch article by id"
+			},
+			"response": []
+		},
+		{
+			"name": "Create Article /articles",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n        \"title\": \"Arduino Nano VS Raspberry Pi Pico\",\r\n        \"desc\": \"Komparasi antara mikrokontroler Arduino Nano dan Raspberry Pi Pico berdasarkan beberapa aspek\",\r\n        \"imageUrl\": \"https://miro.medium.com/max/451/1*UpvEY6w8_6uUPh1sMtdtDA.png\",\r\n        \"publishedDate\": \"2021-08-22T17:00:00.000Z\",\r\n        \"duration\": 4,\r\n        \"link\": \"https://medium.com/@workshopitb/arduino-nano-vs-raspberry-pi-pico-6a31df448afb\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}/articles",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"articles"
+					]
+				},
+				"description": "Create new article"
+			},
+			"response": []
+		},
+		{
+			"name": "Put Article by id /articles/:id",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\": 1,\r\n    \"title\": \"1\",\r\n    \"desc\": \"2\",\r\n    \"imageUrl\": \"3\",\r\n    \"publishedDate\": \"4\",\r\n    \"duration\": \"5\",\r\n    \"link\": \"6\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}/articles/1",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"articles",
+						"1"
+					]
+				},
+				"description": "Update article"
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Article by id /articles/:id",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/articles/12",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"articles",
+						"12"
+					]
+				},
+				"description": "Delete article"
+			},
+			"response": []
+		},
+		{
+			"name": "SHOPS",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/admins",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"admins"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get All Shops /shops",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/shops",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"shops"
+					]
+				},
+				"description": "Fetch all shops"
+			},
+			"response": []
+		},
+		{
+			"name": "Create Shop /shop",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n        \"title\": \"Kit IoT ESP32\",\r\n        \"imageUrl\": \"https://images.tokopedia.net/img/cache/900/VqbcmM/2021/9/20/f7a86e04-c366-4ecc-8bb4-912ae49b0090.jpg\",\r\n        \"link\": \"https://www.tokopedia.com/workshophme/kit-iot\",\r\n        \"price\": 215000\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}/shops",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"shops"
+					]
+				},
+				"description": "Create new shop"
+			},
+			"response": []
+		},
+		{
+			"name": "Get Shop by id /shops/:id",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/shops/id",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"shops",
+						"id"
+					]
+				},
+				"description": "Fetch shop by id"
+			},
+			"response": []
+		},
+		{
+			"name": "Put Shop by id /shops/:id",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\"imageUrl\": \"https://images.tokopedia.net/img/cache/900/VqbcmM/2021/9/20/e9783005-3013-4efc-a6da-cb189335375c.jpg\",\r\n\"link\": \"https://images.tokopedia.net/img/cache/900/VqbcmM/2021/9/20/e9783005-3013-4efc-a6da-cb189335375c.jpg\",\r\n\"price\": 25000,\r\n\"title\": \"Shop Test edit\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}/shops/4",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"shops",
+						"4"
+					]
+				},
+				"description": "Update shop"
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Shop by id /shops/:id",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/shops/id",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"shops",
+						"id"
+					]
+				},
+				"description": "Delete shop"
+			},
+			"response": []
+		},
+		{
+			"name": "TOOLS",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}",
+					"host": [
+						"{{base_url}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get All Tools /tools",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/tools",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"tools"
+					]
+				},
+				"description": "Fetch all tools"
+			},
+			"response": []
+		},
+		{
+			"name": "Create Tool /tools",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\"activated\": true,\r\n\"image\": \"https://workshophme.com/wp-content/uploads/2021/imgs/625198999761b2.75812174.jpg\",\r\n\"name\": \"Halogen LED Kotak\",\r\n\"priceDay\": 10000,\r\n\"priceHour\": 50000,\r\n\"totalStock\": 2\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}/tools",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"tools"
+					]
+				},
+				"description": "Create new tool"
+			},
+			"response": []
+		},
+		{
+			"name": "Get Tool by id /shops/:id",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/tools/:id",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"tools",
+						":id"
+					],
+					"variable": [
+						{
+							"key": "id",
+							"value": null
+						}
+					]
+				},
+				"description": "Fetch tool by id"
+			},
+			"response": []
+		},
+		{
+			"name": "Put Tool by id /shops/:id",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n        \"name\": \"\",\r\n        \"image\": \"\",\r\n        \"totalStock\": \"\",\r\n        \"priceHour\": \"\",\r\n        \"priceDay\": \"\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}/tools/:id",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"tools",
+						":id"
+					],
+					"variable": [
+						{
+							"key": "id",
+							"value": null
+						}
+					]
+				},
+				"description": "Update tool"
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Tool by id /shops/:id",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/tools/:id",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"tools",
+						":id"
+					],
+					"variable": [
+						{
+							"key": "id",
+							"value": null
+						}
+					]
+				},
+				"description": "Delete tool"
+			},
+			"response": []
+		},
+		{
+			"name": "RENTS",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}",
+					"host": [
+						"{{base_url}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get All Rents /rents",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/rents",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"rents"
+					]
+				},
+				"description": "Fetch all rents"
+			},
+			"response": []
+		},
+		{
+			"name": "Get Rents Restrict /restrict/rents",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/restrict/rents",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"restrict",
+						"rents"
+					]
+				},
+				"description": "Get all rents (tools, status, and rent dates only without exposing customer data)"
+			},
+			"response": []
+		},
+		{
+			"name": "Create rent /rents",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"tools\": \"Test Tool\",\r\n    \"rentName\": \"David\",\r\n    \"rentNim\": \"13218043\",\r\n    \"rentPhone\": \"087743872830\",\r\n    \"rentLineId\": \"diasdua2\",\r\n    \"organisation\": \"HME\",\r\n    \"fromDate\": \"2011-10-05T14:48:00.000Z\",\r\n    \"expectedReturnDate\": \"2011-10-05T14:48:00.000Z\",\r\n    \"status\": \"waiting_pickup\",\r\n    \"totalPrice\": 10000\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}/rents",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"rents"
+					]
+				},
+				"description": "Create new rent"
+			},
+			"response": []
+		},
+		{
+			"name": "Get Rent by id /rents/:id",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/rents/:id",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"rents",
+						":id"
+					],
+					"variable": [
+						{
+							"key": "id",
+							"value": null
+						}
+					]
+				},
+				"description": "Fetch rent by id"
+			},
+			"response": []
+		},
+		{
+			"name": "Put Rent by id /rents/:id",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"tools\": \"Test Tool\",\r\n    \"rentName\": \"David\",\r\n    \"rentNim\": \"13218043\",\r\n    \"rentPhone\": \"087743872830\",\r\n    \"rentLineId\": \"diasdua2\",\r\n    \"organisation\": \"HME\",\r\n    \"fromDate\": \"2011-10-05T14:48:00.000Z\",\r\n    \"expectedReturnDate\": \"2011-10-05T14:48:00.000Z\",\r\n    \"status\": \"waiting_pickup\",\r\n    \"totalPrice\": 10000\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}/rents/:id",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"rents",
+						":id"
+					],
+					"variable": [
+						{
+							"key": "id",
+							"value": "3"
+						}
+					]
+				},
+				"description": "Update rent"
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Rent by id /rents/:id",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/rents/:id",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"rents",
+						":id"
+					],
+					"variable": [
+						{
+							"key": "id",
+							"value": null
+						}
+					]
+				},
+				"description": "Delete rent"
+			},
+			"response": []
+		},
+		{
+			"name": "bottom",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}",
+					"host": [
+						"{{base_url}}"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "{{token}}",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}
