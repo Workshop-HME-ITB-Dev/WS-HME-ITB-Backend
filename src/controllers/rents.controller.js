@@ -19,6 +19,30 @@ const findAllRents = async (req, res) => {
   }
 };
 
+const findAllRentsRestricted = async (req, res) => {
+  try {
+    const rents = await Rent.findAll();
+    const datas = rents.map(x => {
+      x.tools,
+        x.status,
+        x.fromDate,
+        x.expectedReturnDate
+    });
+
+    res.status(200).json({
+      status: "success",
+      data: datas,
+      message: "Get All Rents Restricted Success",
+    });
+  } catch (error) {
+    res.status(500).json({
+      status: "error",
+      data: error.message,
+      message: "Problem with Server",
+    });
+  }
+};
+
 const createRent = async (req, res) => {
   try {
     validateCreateRentInput(req.body);
@@ -148,6 +172,7 @@ const deleteRentById = async (req, res) => {
 
 module.exports = {
   findAllRents,
+  findAllRentsRestricted,
   findRentById,
   createRent,
   updateRentById,

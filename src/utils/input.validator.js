@@ -64,7 +64,7 @@ const validateCreateToolInput = ({
         validator.isEmpty(activated.toString()) ||
         validator.isEmpty(totalStock.toString()) ||
         validator.isEmpty(priceHour.toString()) ||
-        validator.isEmpty(priceHour.toString())
+        validator.isEmpty(priceHour.toString()) 
     ) {
         throw new Error('Input must not be empty');
     }

@@ -30,6 +30,7 @@ const {
   findRentById,
   updateRentById,
   deleteRentById,
+  findAllRentsRestricted,
 } = require("./controllers/rents.controller");
 const {
   findAllTools,
@@ -101,6 +102,7 @@ app.put("/tools/:id", auth, updateToolById);
 app.delete("/tools/:id", auth, deleteToolById);
 // Rents
 app.get("/rents", findAllRents);
+app.get("/restrict/rents", findAllRentsRestricted);
 app.post("/rents", auth, createRent);
 app.get("/rents/:id", auth, findRentById);
 app.put("/rents/:id", auth, updateRentById);
