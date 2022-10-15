@@ -22,12 +22,14 @@ const findAllRents = async (req, res) => {
 const findAllRentsRestricted = async (req, res) => {
   try {
     const rents = await Rent.findAll();
-    const datas = rents.map(x => {
-      x.tools,
-        x.status,
-        x.fromDate,
-        x.expectedReturnDate
-    });
+    const datas = rents.map(x =>
+    ({
+      tools: x.tools,
+      status: x.status,
+      fromDate: x.fromDate,
+      expectedReturnDate: x.expectedReturnDate,
+    })
+    );
 
     res.status(200).json({
       status: "success",

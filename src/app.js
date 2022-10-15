@@ -79,7 +79,7 @@ app.post('/uploads', auth, upload.single('image'), uploadHandler)
 app.post("/login", login);
 // Admin
 app.get("/admins", auth, findAllAdmins);
-app.post("/admins", createAdmin);
+app.post("/admins", auth, createAdmin);
 app.get("/admins/:id", auth, findAdminById);
 app.put("/admins/:id", auth, updateAdminById);
 // Articles
