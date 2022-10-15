@@ -103,7 +103,7 @@ app.delete("/tools/:id", auth, deleteToolById);
 // Rents
 app.get("/rents", auth, findAllRents);
 app.get("/restrict/rents", findAllRentsRestricted);
-app.post("/rents", auth, createRent);
+app.post("/rents", createRent);
 app.get("/rents/:id", auth, findRentById);
 app.put("/rents/:id", auth, updateRentById);
 app.delete("/rents/:id", auth, deleteRentById);
