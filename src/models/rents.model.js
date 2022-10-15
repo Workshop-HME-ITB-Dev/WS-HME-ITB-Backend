@@ -6,7 +6,7 @@ module.exports = (sequelize, Sequelize) => {
             primaryKey: true
         },
         tools: {
-            type: Sequelize.STRING,
+            type: Sequelize.TEXT('long'),
             allowNull: false
         },
         rentName: {
