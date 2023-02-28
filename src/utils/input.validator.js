@@ -25,8 +25,8 @@ const validateRegisterInput = ({
     if (name.length > 25) {
         throw new Error('Name maximum length is 25');
     }
-    // check if password strongenough (min 5, contains number, contain lowercase, contain uppercase)
-    if (!password.match(/^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])([a-zA-Z0-9]{5,})$/)) {
+    // check if password strongenough (min 8, contains number, contain lowercase, contain uppercase)
+    if (!checkPassword(password)) {
         throw new Error('Password not strong enough');
     }
 };
@@ -363,6 +363,12 @@ const validateUpdateArticleInput = ({
         link,
     });
 };
+
+function checkPassword(str)
+{
+    var re = /^(?=.*\d)(?=.*[!@#$%^&*])(?=.*[a-z])(?=.*[A-Z]).{8,}$/;
+    return re.test(str);
+}
 
 const validateId = (id) => {
     // id not empty and is int
